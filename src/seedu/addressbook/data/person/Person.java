@@ -16,16 +16,18 @@ public class Person implements ReadOnlyPerson {
     private Phone phone;
     private Email email;
     private Address address;
+    private Timetable timetable;
 
     private final Set<Tag> tags = new HashSet<>();
     /**
      * Assumption: Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address, Timetable timetable, Set<Tag> tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.timetable = timetable;
         this.tags.addAll(tags);
     }
 
@@ -33,7 +35,7 @@ public class Person implements ReadOnlyPerson {
      * Copy constructor.
      */
     public Person(ReadOnlyPerson source) {
-        this(source.getName(), source.getPhone(), source.getEmail(), source.getAddress(), source.getTags());
+        this(source.getName(), source.getPhone(), source.getEmail(), source.getAddress(), source.getTimetable(), source.getTags());
     }
 
     @Override
@@ -55,6 +57,9 @@ public class Person implements ReadOnlyPerson {
     public Address getAddress() {
         return address;
     }
+
+    @Override
+    public Timetable getTimetable() { return timetable; }
 
     @Override
     public Set<Tag> getTags() {
