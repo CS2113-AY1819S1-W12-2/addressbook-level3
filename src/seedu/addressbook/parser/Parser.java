@@ -24,6 +24,7 @@ public class Parser {
                     + " (?<isPhonePrivate>p?)p/(?<phone>[^/]+)"
                     + " (?<isEmailPrivate>p?)e/(?<email>[^/]+)"
                     + " (?<isAddressPrivate>p?)a/(?<address>[^/]+)"
+                    + " (?<isTimetablePrivate>p?)tt/(?<timetable>[^/]+)"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
 
 
@@ -111,6 +112,9 @@ public class Parser {
 
                     matcher.group("address"),
                     isPrivatePrefixPresent(matcher.group("isAddressPrivate")),
+
+                    matcher.group("timetable"),
+                    isPrivatePrefixPresent(matcher.group("isTimetablePrivate")),
 
                     getTagsFromArgs(matcher.group("tagArguments"))
             );

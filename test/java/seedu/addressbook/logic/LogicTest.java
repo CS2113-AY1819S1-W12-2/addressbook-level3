@@ -466,10 +466,11 @@ public class LogicTest {
             Phone privatePhone = new Phone("111111", true);
             Email email = new Email("adam@gmail.com", false);
             Address privateAddress = new Address("111, alpha street", true);
+            Timetable timetable = new Timetable("Mon 9am", false);
             Tag tag1 = new Tag("tag1");
             Tag tag2 = new Tag("tag2");
             Set<Tag> tags = new HashSet<>(Arrays.asList(tag1, tag2));
-            return new Person(name, privatePhone, email, privateAddress, tags);
+            return new Person(name, privatePhone, email, privateAddress, timetable, tags);
         }
 
         /**
@@ -486,6 +487,7 @@ public class LogicTest {
                     new Phone("" + Math.abs(seed), isAllFieldsPrivate),
                     new Email(seed + "@email", isAllFieldsPrivate),
                     new Address("House of " + seed, isAllFieldsPrivate),
+                    new Timetable("Timetable of " + seed, isAllFieldsPrivate),
                     new HashSet<>(Arrays.asList(new Tag("tag" + Math.abs(seed)), new Tag("tag" + Math.abs(seed + 1))))
             );
         }
@@ -500,6 +502,7 @@ public class LogicTest {
             cmd.add((p.getPhone().isPrivate() ? "pp/" : "p/") + p.getPhone());
             cmd.add((p.getEmail().isPrivate() ? "pe/" : "e/") + p.getEmail());
             cmd.add((p.getAddress().isPrivate() ? "pa/" : "a/") + p.getAddress());
+            cmd.add((p.getTimetable().isPrivate() ? "pa/" : "tt/") + p.getTimetable());
 
             Set<Tag> tags = p.getTags();
             for(Tag t: tags){
@@ -582,6 +585,7 @@ public class LogicTest {
                     new Phone("1", false),
                     new Email("1@email", false),
                     new Address("House of 1", false),
+                    new Timetable("Timetable of 1", false),
                     Collections.singleton(new Tag("tag"))
             );
         }
